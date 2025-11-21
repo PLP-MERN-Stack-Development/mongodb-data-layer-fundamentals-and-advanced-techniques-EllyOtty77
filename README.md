@@ -1,59 +1,106 @@
-# MongoDB Fundamentals - Week 1
+# MongoDB Bookstore Project
 
-## Setup Instructions
+A Node.js application demonstrating MongoDB data layer fundamentals and advanced techniques including queries, aggregation pipelines, and indexing.
 
-Before you begin this assignment, please make sure you have the following installed:
+## Prerequisites
 
-1. **MongoDB Community Edition** - [Installation Guide](https://www.mongodb.com/docs/manual/administration/install-community/)
-2. **MongoDB Shell (mongosh)** - This is included with MongoDB Community Edition
-3. **Node.js** - [Download here](https://nodejs.org/)
+- Node.js installed
+- MongoDB running locally on `127.0.0.1:27017`
+- MongoDB database named `plp_bookstore`
 
-### Node.js Package Setup
+## Installation
 
-Once you have Node.js installed, run the following commands in your assignment directory:
-
+1. Clone the repository and navigate to the project directory
+2. Install dependencies:
 ```bash
-# Initialize a package.json file
 npm init -y
-
-# Install the MongoDB Node.js driver
 npm install mongodb
 ```
 
-## Assignment Overview
+## Scripts Overview
 
-This week focuses on MongoDB fundamentals including:
-- Creating and connecting to MongoDB databases
-- CRUD operations (Create, Read, Update, Delete)
-- MongoDB queries and filters
-- Aggregation pipelines
-- Indexing for performance
+### 1. Basic Queries (`queries.js`)
+- Find books by genre, author, and publication year
+- Update book prices
+- Delete books by title
 
-## Submission
+**Run:**
+```bash
+node queries.js
+```
 
-Complete all the exercises in this assignment and push your code to GitHub using the provided GitHub Classroom link.
+### 2. Advanced Queries (`advanced.js`)
+- Complex queries with projection and sorting
+- Pagination implementation (5 books per page)
+- Combined filters (in stock + publication year)
 
-## Getting Started
+**Run:**
+```bash
+node advanced.js
+```
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install MongoDB locally or set up a MongoDB Atlas account
-4. Run the provided `insert_books.js` script to populate your database
-5. Complete the tasks in the assignment document
+### 3. Aggregation Pipelines (`aggregation.js`)
+- Average book price by genre
+- Author with the most books
+- Books grouped by publication decade
 
-## Files Included
+**Run:**
+```bash
+node aggregation.js
+```
 
-- `Week1-Assignment.md`: Detailed assignment instructions
-- `insert_books.js`: Script to populate your MongoDB database with sample book data
+### 4. Indexing Performance (`indexing.js`)
+- Creates single and compound indexes
+- Demonstrates performance improvements using `explain()`
+- Shows query execution statistics
 
-## Requirements
+**Run:**
+```bash
+node indexing.js
+```
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- MongoDB Shell (mongosh) or MongoDB Compass
+## Database Schema
 
-## Resources
+The `books` collection uses this document structure:
+```javascript
+{
+  title: String,
+  author: String,
+  published_year: Number,
+  genre: String,
+  price: Number,
+  pages: Number,
+  in_stock: Boolean,
+  publisher: String
+}
+```
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [MongoDB University](https://university.mongodb.com/)
-- [MongoDB Node.js Driver](https://mongodb.github.io/node-mongodb-native/) 
+## Key MongoDB Features Demonstrated
+
+- **Basic CRUD Operations**: find, update, delete
+- **Aggregation Pipeline**: $group, $unwind, $project, $sort
+- **Indexing**: Single field and compound indexes
+- **Query Optimization**: Using explain() for performance analysis
+- **Pagination**: limit() and skip() methods
+
+## Connection Details
+
+All scripts connect to:
+- **URI**: `mongodb://127.0.0.1:27017`
+- **Database**: `plp_bookstore`
+- **Collection**: `books`
+
+## Troubleshooting
+
+If you encounter connection issues:
+1. Ensure MongoDB is running: `sc query MongoDB`
+2. Use IPv4 address (`127.0.0.1`) instead of `localhost`
+3. Check if the `plp_bookstore` database exists
+
+## Expected Output
+
+Each script provides detailed console output showing:
+- Query results
+- Performance metrics
+- Aggregation results
+- Index usage statistics
